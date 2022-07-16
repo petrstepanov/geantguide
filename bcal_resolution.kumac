@@ -1,0 +1,310 @@
+macro bcal_resolution
+* 
+* Plot parameterizations of Bcal resolution
+* 10/31/06  ES
+*
+* set options
+*
+hi/create/title_global 'Bcal resolution parameters'
+option ndate
+option nbox
+*set stat 1111111
+set stat 111
+option nstat
+set fit 111
+option fit
+option grid
+*
+* plotting options
+*
+* set *
+*set xmgl 4.
+*set ymgl 4.
+*set asiz 0.4
+*set xlab 2.
+*set ylab 1.
+*set xsiz 20.
+*set xmgl 3.
+*set ymgl 3.
+*set ysiz 20.
+*set gsiz 0.4
+*
+* set font definitions to bold roman 
+*
+set CFON -21
+set GFON -21
+set LFON -21
+set TFON -21
+set VFON -21
+set txfp -21
+set SMGU 0.02
+set SMGR 0.02
+set CSIZ 0.33
+set VSIZ 0.3
+set TSIZ 0.35
+set YHTI 0.9
+set HWID 3.0
+set BWID 3.0
+set asiz 0.38
+*
+zone 2 2 
+*
+* open metafile
+*
+for/file 66 bcal_resolution.ps
+meta 66 -111
+*for/file 66 bcal_resolution.eps
+*meta 66 -113
+*
+npts1 = 101
+*
+* resolution functions
+*
+vector/create err([npts1]) R [npts1]*0.01
+vector/create e([npts1]) R [npts1]*0.
+vector/create sampl([npts1]) R [npts1]*0.
+vector/create stat([npts1]) R [npts1]*0.
+vector/create floor([npts1]) R [npts1]*0.
+vector/create signal([npts1]) R [npts1]*0.
+vector/create npe([npts1]) R [npts1]*0.
+vector/create sig([npts1]) R [npts1]*0.
+*
+emin = 0
+emax = 0.5
+ymin = 0 
+ymax = 0.5
+a = 0.05
+b = 0.01
+* b = 0
+c = 0
+*
+npts = [npts1] - 1
+sigma j=array([npts1],0#[npts1]-1)
+sigma e = [emin] + ([emax]-[emin])*j/[npts]
+sigma sampl = [a]/sqrt(e)
+*
+* plot 1
+*     
+PDE = 0.12
+* fudge using empirical factor of 4
+npeMev = 84/4
+ntubes = 64
+npix = 3000
+pixelr = 4e6
+dt = 1e-7
+* DR = [pixelr]*[npix]*16
+DR = 32e6
+sqrtDR = $sigma(sqrt([DR]))
+pedr = [dt]*[ntubes]*[DR]
+*
+* note: last term with [c]=0 a trick to allows sigma to compute
+*
+sigma floor = [b]*[b] + [c]*j
+sigma floor = sqrt(floor)
+sigma signal = [npeMeV]*e*1000*[PDE]
+sigma npe = [pedr] + [npeMeV]*e*1000*[PDE]
+sigma stat = sqrt(npe)/signal
+*
+message PDE ntubes npix pixelr dt DR sqrtDR pedr
+message [PDE] [ntubes] [npix] [pixelr] [dt] [DR] [sqrtDR] [pedr]
+wait
+vector/print npe
+wait
+vector/print signal
+wait
+sigma sig = sqrt(sampl**2 + floor**2 + stat**2)
+*
+csize = 0.05
+igset chhe [csize]
+hplot/null [emin] [emax] [ymin] [ymax]
+hplot/atitle 'Energy (GeV)' '[D]E/E'
+set pmci 2
+set plci 2
+hplot/symbol e sampl [npts1] 20 [csize]
+set plci 4
+set pmci 4
+hplot/symbol e stat [npts1] 20 [csize]
+set plci 1
+set pmci 1
+hplot/symbol e floor [npts1] 20 [csize]
+set plci 3
+set pmci 3
+hplot/symbol e sig [npts1] 20 [csize]
+igset chhe 0.3
+exe window#push
+itx 0.4 0.4 'DR=' [DR]
+itx 0.4 0.3 'PDE=' [PDE]
+set pmci 3
+key 0.25 0.9 20 'Total'
+set pmci 2
+key 0.25 0.8 20 'Sampling'
+set pmci 1
+key 0.25 0.7 20 'Floor'
+set pmci 4
+key 0.25 0.6 20 'Stat'
+exe window#pop
+*
+* plot 2
+*
+PDE = 0.12
+npeMev = 84/4
+npe = [npeMeV]*[e]*[PDE]
+ntubes = 64
+npix = 3000
+pixelr = 4e6
+dt = 1e-7
+* DR = [pixelr]*[npix]*16
+DR = 16e6
+sqrtDR = $sigma(sqrt([DR]))
+pedr = [dt]*[ntubes]*[DR]
+sigma floor = [b]*[b] + [c]*j
+sigma floor = sqrt(floor)
+sigma signal = [npeMeV]*e*1000*[PDE]
+sigma npe = [pedr] + [npeMeV]*e*1000*[PDE]
+sigma stat = sqrt(npe)/signal
+sigma sig = sqrt(sampl**2 + floor**2 + stat**2)
+*
+message PDE ntubes npix pixelr dt DR sqrtDR pedr
+message [PDE] [ntubes] [npix] [pixelr] [dt] [DR] [sqrtDR] [pedr]
+*
+csize = 0.05
+igset chhe [csize]
+hplot/null [emin] [emax] [ymin] [ymax]
+hplot/atitle 'Energy (GeV)' '[D]E/E'
+set pmci 2
+set plci 2
+hplot/symbol e sampl [npts1] 20 [csize]
+set plci 4
+set pmci 4
+hplot/symbol e stat [npts1] 20 [csize]
+set plci 1
+set pmci 1
+hplot/symbol e floor [npts1] 20 [csize]
+set plci 3
+set pmci 3
+hplot/symbol e sig [npts1] 20 [csize]
+igset chhe 0.3
+exe window#push
+itx 0.4 0.4 'DR=' [DR]
+itx 0.4 0.3 'PDE=' [PDE]
+set pmci 3
+key 0.25 0.9 20 'Total'
+set pmci 2
+key 0.25 0.8 20 'Sampling'
+set pmci 1
+key 0.25 0.7 20 'Floor'
+set pmci 4
+key 0.25 0.6 20 'Stat'
+exe window#pop
+*
+* plot 3
+*
+PDE = 0.21
+npeMev = 84/4
+npe = [npeMeV]*[e]*[PDE]
+ntubes = 64
+npix = 3000
+pixelr = 4e6
+dt = 1e-7
+* DR = [pixelr]*[npix]*16
+DR = 32e6
+sqrtDR = $sigma(sqrt([DR]))
+pedr = [dt]*[ntubes]*[DR]
+sigma floor = [b]*[b] + [c]*j
+sigma floor = sqrt(floor)
+sigma signal = [npeMeV]*e*1000*[PDE]
+sigma npe = [pedr] + [npeMeV]*e*1000*[PDE]
+sigma stat = sqrt(npe)/signal
+sigma sig = sqrt(sampl**2 + floor**2 + stat**2)
+*
+message PDE ntubes npix pixelr dt DR sqrtDR pedr
+message [PDE] [ntubes] [npix] [pixelr] [dt] [DR] [sqrtDR] [pedr]
+*
+csize = 0.05
+igset chhe [csize]
+hplot/null [emin] [emax] [ymin] [ymax]
+hplot/atitle 'Energy (GeV)' '[D]E/E'
+set pmci 2
+set plci 2
+hplot/symbol e sampl [npts1] 20 [csize]
+set plci 4
+set pmci 4
+hplot/symbol e stat [npts1] 20 [csize]
+set plci 1
+set pmci 1
+hplot/symbol e floor [npts1] 20 [csize]
+set plci 3
+set pmci 3
+hplot/symbol e sig [npts1] 20 [csize]
+igset chhe 0.3
+exe window#push
+itx 0.4 0.4 'DR=' [DR]
+itx 0.4 0.3 'PDE=' [PDE]
+set pmci 3
+key 0.25 0.9 20 'Total'
+set pmci 2
+key 0.25 0.8 20 'Sampling'
+set pmci 1
+key 0.25 0.7 20 'Floor'
+set pmci 4
+key 0.25 0.6 20 'Stat'
+exe window#pop
+*
+* plot 4
+*
+PDE = 0.21
+npeMev = 84/4
+npe = [npeMeV]*[e]*[PDE]
+ntubes = 64
+npix = 3000
+pixelr = 4e6
+dt = 1e-7
+* DR = [pixelr]*[npix]*16
+DR = 16e6
+sqrtDR = $sigma(sqrt([DR]))
+pedr = [dt]*[ntubes]*[DR]
+sigma floor = [b]*[b] + [c]*j
+sigma floor = sqrt(floor)
+sigma signal = [npeMeV]*e*1000*[PDE]
+sigma npe = [pedr] + [npeMeV]*e*1000*[PDE]
+sigma stat = sqrt(npe)/signal
+sigma sig = sqrt(sampl**2 + floor**2 + stat**2)
+*
+message PDE ntubes npix pixelr dt DR sqrtDR pedr
+message [PDE] [ntubes] [npix] [pixelr] [dt] [DR] [sqrtDR] [pedr]
+*
+csize = 0.05
+igset chhe [csize]
+hplot/null [emin] [emax] [ymin] [ymax]
+hplot/atitle 'Energy (GeV)' '[D]E/E'
+set pmci 2
+set plci 2
+hplot/symbol e sampl [npts1] 20 [csize]
+set plci 4
+set pmci 4
+hplot/symbol e stat [npts1] 20 [csize]
+set plci 1
+set pmci 1
+hplot/symbol e floor [npts1] 20 [csize]
+set plci 3
+set pmci 3
+hplot/symbol e sig [npts1] 20 [csize]
+igset chhe 0.3
+exe window#push
+itx 0.4 0.4 'DR=' [DR]
+itx 0.4 0.3 'PDE=' [PDE]
+set pmci 3
+key 0.25 0.9 20 'Total'
+set pmci 2
+key 0.25 0.8 20 'Sampling'
+set pmci 1
+key 0.25 0.7 20 'Floor'
+set pmci 4
+key 0.25 0.6 20 'Stat'
+exe window#pop
+*
+ close 66
+*
+exitm 
+return
+

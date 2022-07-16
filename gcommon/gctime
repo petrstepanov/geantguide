@@ -1,0 +1,4 @@
+	COMMON/GCTIME/TIMINT,TIMEND,ITIME,IGDATE,IGTIME,TIMNOW,tsum
+C
+
+	real tmean,left,timlast

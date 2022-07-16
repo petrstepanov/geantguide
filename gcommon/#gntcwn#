@@ -1,0 +1,13 @@
+      COMMON/GNTCWN/NTR,NP(20),IDP(20),PM(20),PCH(20),PPX(20),PPY(20),
+     *              PPZ(20),PE(20),EDSCI(20),EDPB(20),EDBC(20),
+     *              EDH2(20),EDST(20),EDCDC(20),EDAL(20),nmod,
+     *              share(48),pbshare(48),scishare(48),glueshare(48),
+     *		    xpos(20),ypos(20),zpos(20),bnc2,bnc21,bnc22,
+     *              vect1,vect2,vect3,vect4,vect5,vect6,vect7
+      INTEGER NTR,NP,IDP,nmod
+      REAL PM,PCH,PPX,PPY,PPZ,PE,EDSCI,EDPB,EDBC,EDH2,EDST,EDCDC,EDAL
+      REAL share,pbshare,scishare,glueshare,xpos,ypos,zpos
+      real bnc2,bnc21,bnc22,vect1,vect2,vect3,vect4,vect5,vect6,vect7
+ 
+ 
+ 

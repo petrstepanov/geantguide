@@ -1,0 +1,4 @@
+      COMMON/GGENR8/ ntrk,numrun,numev,numtr,idpart,prtmas
+     +,chpart,px,py,pz,engprt
+      INTEGER ntrk,numrun,numev,numtr,idpart   
+      REAL prtmas,chpart,px,py,pz,engprt

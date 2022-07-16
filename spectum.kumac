@@ -1,0 +1,4 @@
+vect/del *
+vect/create x
+vect/create y
+vect/read x,y 65mm.dat

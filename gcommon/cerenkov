@@ -1,0 +1,17 @@
+      Integer nbins,IMSCNT
+      Parameter (nbins=51)
+      Real Ephot(nbins)
+      Real eff0(nbins),eff1(nbins),effPMT(nbins)
+      Real rindexLGD(nbins),alenLGD(nbins)
+      real rindexclada(nbins),rindexcladb(nbins),alenClad(nbins)
+      Real rindexWrap(nbins),alenWrap(nbins)
+      Real rindexGap(nbins),alenGap(nbins)
+      Real rindexAIR(nbins),alenAIR(nbins)
+      Real rindexPMT(nbins),alenPMT(nbins)
+      Real rindexmir(1),abscomir(nbins)
+c
+c     save for gustep
+c
+      Real Rnguide
+      common /Rncommon/ Rnguide
+

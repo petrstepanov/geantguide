@@ -1,0 +1,190 @@
+macro plot_guide
+* 
+* Plot parameterizations of Bcal resolution
+* 10/31/06  ES
+*
+* get hitogram file created by geant3
+*
+hi/file 1 gntbcal.hbook 4096
+*
+* set options
+*
+* hi/create/title_global 'Light transmission efficiency'
+option ndate
+option nbox
+set stat 1111111
+option stat
+set fit 111
+option fit
+option grid
+*
+* plotting options
+*
+* set *
+*set xmgl 4.
+*set ymgl 4.
+*set asiz 0.4
+*set xlab 2.
+*set ylab 1.
+*set xsiz 20.
+*set xmgl 3.
+*set ymgl 3.
+*set ysiz 20.
+*set gsiz 0.4
+*
+* set font definitions to bold roman 
+*
+set CFON -21
+set GFON -21
+set LFON -21
+set TFON -21
+set VFON -21
+set txfp -21
+set SMGU 0.02
+set SMGR 0.02
+set CSIZ 0.33
+set VSIZ 0.3
+set TSIZ 0.35
+set YHTI 0.9
+set HWID 3.0
+set BWID 3.0
+set asiz 0.38
+*
+* get color map
+*
+exe color
+zone 2 2 
+*
+* open metafile
+*
+for/file 66 plot_guide.ps
+meta 66 -111
+* for/file 67 plot_guide.eps
+* meta 66 -113
+*
+npts1 = 101
+*
+* resolution functions
+*
+vector/create err([npts1]) R [npts1]*0.01
+vector/create e([npts1]) R [npts1]*0.
+*
+emin = 0
+emax = 0.5
+ymin = 0 
+ymax = 0.5
+*
+npts = [npts1] - 1
+sigma j=array([npts1],0#[npts1]-1)
+sigma e = [emin] + ([emax]-[emin])*j/[npts]
+*
+* plot 1
+*
+csize = 0.05
+igset chhe [csize]
+* hplot/null [emin] [emax] [ymin] [ymax]
+zone 2 2
+hi/plot 101
+hi/plot 121
+hi/operations/divide 121 101 151
+hi/plot 151
+igset chhe 0.3
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop
+wait
+* plot 2
+zone 2 2
+hi/plot 102
+hi/plot 122
+hi/operations/divide 122 102 152
+hi/plot 152
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop
+
+* plot 3
+zone 2 2
+hi/plot 103
+hi/plot 123
+hi/operations/divide 123 103 153
+hi/plot 153
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop
+* plot 4
+zone 2 2
+hi/plot 104
+hi/plot 105
+hi/plot 304
+hi/plot 305
+*close 66
+* plot 5
+zone 2 2
+hi/plot 111 colz
+hi/plot 131 colz
+hi/operations/divide 131 111 161
+hi/plot 161 colz
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop 
+* plot 6
+zone 2 2
+hi/plot 112 colz
+hi/plot 132 colz
+hi/operations/divide 132 112 162
+hi/plot 162 colz
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop 
+* plot 7
+zone 2 2
+hi/plot 113 colz
+hi/plot 133 colz
+hi/operations/divide 133 113 163
+hi/plot 163 colz 
+exe window#push
+itx 0.95 -0.18 'Efficiency'
+exe window#pop
+hi/plot 215 colz
+* plot 8
+zone 2 2
+hi/plot 201
+hi/plot 202
+hi/plot 203
+* plot 9
+*zone 2 2
+*hi/plot 204
+*hi/plot 205
+*hi/plot 206
+* plot 10
+*zone 2 2
+*hi/plot 207
+*hi/plot 208
+*hi/plot 209
+* plot 11
+zone 2 2
+hi/plot 231
+hi/plot 232
+hi/plot 233
+* plot 12
+zone 2 2
+hi/plot 211 colz
+hi/plot 212 colz
+hi/plot 213 colz
+hi/plot 214 colz
+* plot 13
+* for/file 66 plot_guide_p13.eps
+* meta 66 -113
+* zone 2 2
+* hi/plot 217 colz
+* hi/plot 215 colz
+* hi/plot 216 colz
+* hi/plot 214 colz
+
+*
+ close 66
+*
+exitm 
+return
+

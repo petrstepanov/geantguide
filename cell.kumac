@@ -1,0 +1,132 @@
+
+opt zfl1
+next
+close 1
+hi/file 1 gntbcal.hbook 4096
+opt stat
+opt date
+vect/create mean(25,5)
+vect/create phot(25,5)
+vect/create prob(25,5)
+sum=0.
+num=0.
+modu=1
+
+*do modu=1,48
+hnum=([modu]-1)*25*5
+mess hnum=[hnum]
+   do j=1,25
+   do m=1,5
+     num=([num]+1.)
+     k=(3100+[num]+[hnum])
+     mess k=[k]
+     hi/pl [k]
+*wait
+     x=($HINFO([k],'MEAN'))
+     vect/input mean([j],[m]) [x]
+*     sum=[sum]+mean([j],[m])
+*     vect/pr mean([j],[m])
+     l=([num]+9100+[hnum])
+     mess l=[l]
+     hi/pl [l]
+*wait
+     p=($HINFO([l],'MEAN'))
+     v=($HINFO([l],'ENTRIES'))
+     sum=[sum]+[v]
+     vect/input phot([j],[m]) [p]
+     vect/input prob([j],[m]) [v]
+*     vect/print phot([j],[m])
+    enddo
+   enddo
+mess sum=[sum]
+
+title_global '' 0.3
+null -1 13 -1 26
+atitle 'X (cm)' 'Depth (cm)' 0.3
+*text 0 27.25 'genr8 "5#  beam p?z!=8.0 GeV/c      t-channel slope = 5.0' 0.3
+text 0 27.25 '1 GeV photons incident [q]=33deg at z=100cm(0=middle)' 0.3
+
+text -1 26.25 'mean energy deposit in fibres (MeV)' 0.2
+text 2 -2.5 'attenuation accounted for ([l]=280cm) ' 0.3
+*text 2 -3.5 'p"-#pi+pi-pi0.input 2000 events' 0.3
+text 2 -3.5 '200 events' 0.3
+
+*text 2 28.25  '[g]p"5#p+X(1700)"5#p+[p]^+!+[p]^-!+[p]^0!' 0.3
+*text 5 28.25 module-[modu] 0.3
+set txci 2. 
+text 4.2 26.25 'mean no. of [g] by MC-gain= 1.25"Y#*8000/MeV' 0.2
+set txci 4.
+text 10.5 26.25 'num. events [g].gt.0' 0.2 
+*do i=1,12
+  do j=1,25
+  do m=1,5
+    y=mean([j],[m])
+    y=$FORMAT([y],F5.3)
+    p=phot([j],[m])
+    p=$FORMAT([p],I5)
+    v=prob([j],[m])
+    v=$FORMAT([v],I5)
+ 
+    set txci 1.
+if ([m].eq.5) then
+    text (0.5+1.7*[m]+0.07*[j]) ([j]-0.6) [y] 0.2
+elseif ([m].eq.4) then
+    text (0.5+1.7*[m]+0.04*[j]) ([j]-0.5) [y] 0.2
+elseif ([m].eq.3) then
+    text (0.5+1.7*[m]) ([j]-0.45) [y] 0.2
+elseif ([m].eq.2) then
+    text (0.5+1.7*[m]-0.04*[j]) ([j]-0.5) [y] 0.2
+elseif ([m].eq.1) then
+    text (0.5+1.7*[m]-0.07*[j]) ([j]-0.6) [y] 0.2
+endif
+    set txci 2.
+if ([m].eq.5) then
+    text (0.15+1.7*[m]+0.06*[j]) ([j]-1.) [p] 0.2
+elseif ([m].eq.4) then
+    text (0.15+1.7*[m]+0.03*[j]) ([j]-0.9) [p] 0.2
+elseif ([m].eq.3) then
+    text (0.15+1.7*[m]) ([j]-0.85) [p] 0.2
+elseif ([m].eq.2) then
+    text (0.15+1.7*[m]-0.03*[j]) ([j]-0.9) [p] 0.2
+elseif ([m].eq.1) then
+    text (0.15+1.7*[m]-0.06*[j]) ([j]-1.) [p] 0.2
+endif
+    set txci 4.
+if ([m].eq.5) then
+    text (0.85+1.7*[m]+0.06*[j]) ([j]-1.) [v] 0.2
+elseif ([m].eq.4) then
+    text (0.85+1.7*[m]+0.03*[j]) ([j]-0.9) [v] 0.2
+elseif ([m].eq.3) then
+    text (0.85+1.7*[m]) ([j]-0.85) [v] 0.2
+elseif ([m].eq.2) then
+    text (0.85+1.7*[m]-0.03*[j]) ([j]-0.9) [v] 0.2
+elseif ([m].eq.1) then
+    text (0.85+1.7*[m]-0.06*[j]) ([j]-1.) [v] 0.2
+endif
+*    text [m] ([j]-0.8) [p] 0.2
+*    dline (1.75-[j]/13.14) (10.25+[j]/13.14) [j] [j]
+    ARC 6. -60 (60+[j]) (60+[j]) 85.9 94.1 
+  enddo
+enddo
+
+vect/create x(5)
+vect/create y(5)
+vect/create gridx(25)
+vect/create gridy(25)
+vect/input x 1.75 10.25 12. 0. 1.75
+vect/input y 0 0 25 25 0
+*vect/input gridx  _
+*0*vect/input gridy _
+*0
+dline 3.45 2.4 0 25
+dline 5.15 4.8 0 25
+dline 6.85 7.2 0 25
+dline 8.55 9.6 0 25
+
+vect/plot y%x ! SL
+*vect/plot gridy%gridx ! SL
+p/pr moduleps/rphi_sect[modu].ps
+
+*wait
+*enddo
+close 1

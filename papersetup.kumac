@@ -1,0 +1,34 @@
+* Set the fonts (Suggested by Brian's note)
+*
+   set chhe 0.25
+   igset txfp -62
+   set *fon -62
+* Set the axis numeral size to 4 mm (PRC):
+   set VSIZ 0.4
+* Set the axis label size to n cm:
+   set ASIZ 0.5
+* Set the title size (cm) and Y position
+   set GSIZ 0.8
+   set YGTI 0.8
+*set the l-r margins:
+   set XMGL 2.5
+   set XMGR 2.0
+* set the Y(X)-axis title(s) distance from the Y(X) axis.
+   set XLAB 1.5
+   set YLAB 1.0
+* set Y value distance from axis
+   set XVAL 0.52
+*do not plot a box around histos:
+   opt nbox
+   width=5
+   set fwid [width]
+   set lwid 1
+   set hwid 1
+   set ksiz 0.2
+   set mscf 0.2
+   set mtyp 23
+   set hcol 0
+
+* Histogram axes thickness
+   set BWID 5
+   set HWID 5

@@ -1,0 +1,12 @@
+      COMMON/USER/ESCORE(10),EDSTEP(25),SCSTEP(25),PBSTEP(25),BCSTEP(25)
+     +,EDSEGM(3,8),ERSECT(3,8),ESCIFI(3,8),EMLEAD(3,8),EBC600(3,8)
+     +,thx, thy, thz, dx, dy, dz, zbc0, xbc0, ybc0, xbc, ybc, zbc
+     +,dx0, dy0, nsegx, nsegy,rscore(48,25,5),scirscore(20,48,25,5)
+     +,photscore1(10,48,25,5),c(20,125),radius,med(3),first_crossing
+     +,iwlength(100000),photscore2(10,48,25,5),tofcore,tofclad1,tofclad2
+     +,toflast,tofdiff,edtot(20),lgvol1
+      real thx, thy, thz, dx, dy, dz, zbc0, xbc0, ybc0, xbc, ybc, zbc
+      real dx0, dy0,rscore,scirscore,photscore1,radius,photscore2
+      integer nsegx, nsegy, bnum,med
+      real iwlength,lgvol1
+      logical first_crossing

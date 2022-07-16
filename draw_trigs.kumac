@@ -1,0 +1,73 @@
+*
+* draw_trigs.kumac
+*
+* draw pictures of visible photons tracked through light guide
+*
+* GEANT > exe draw_trigs
+*
+* open postscript file
+*
+for/file 66 draw_trigs.eps
+meta 66 -113
+option nbox
+*
+**
+option nbox
+next
+debug on
+set lwid 1.9
+*
+* satt tpmr seen 0
+* draw spac 135 45 0 4 6 0.18 0.18
+* draw spac 135 45 0 12 8 1 1
+*
+* side views
+*
+next
+draw spac 0 90 0 2 15 0.3 0.3 
+trig 100
+draw spac 90 0 0 7 15 0.3 0.3
+trig 100
+draw spac 90 45 0 4 10 0.3 0.3
+trig 100
+draw spac 135 45 0 12 6.5 0.3 0.3
+daxis 0 0 10  2 
+trig 10
+* trig 1
+* draw spac 135 45 0 18 -40 0.8 0.8
+* draw spac 135 45 0 13 6 0.8 0.8
+* draw spac 90 0 0 5 2 0.2 0.2
+* draw spac 0 90 0 10 5 1 1
+* draw spac 0 0 0 7 7 2 2
+*
+* add text
+*
+* set text font to times roman
+*
+igset txfp -20
+igset chhe 0.5
+*
+* Title Example
+*
+itx 9 2.5 Trapezoid inner outside top fine mesh (50+2cm)
+itx 3 11.5  End view
+itx 12 11.5 Side view
+itx 4 4  Side 45deg view
+* itx 13 19 Closeup of cone
+*
+* arrow 6.2 9.7 17.7 11.1 0.3
+* dline 5.1 6.2 17.7 17.7
+*
+*
+* draw tracks
+*
+trig 1
+*
+* create gif file
+*
+* pict/print draw_trigs.eps
+pict/print draw_trigs.gif
+*
+close 66
+
+
