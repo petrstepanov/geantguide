@@ -4,6 +4,8 @@ Development Environment setup on Fedora
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 
+Disable Firewall and SELinux during the setup to avoid potential issues.
+
 TODO: try Feadora v 11. Refer to release info here: 
 https://en.wikipedia.org/wiki/Fedora_Linux_release_history
 
@@ -18,8 +20,7 @@ GeantGuide code dated ~ Jan 2008.
 Compile Pythia 6
 ================
 
-Download Pythia from ROOT website because its source code contains some ROOT bindings:
-https://root.cern.ch/download/pythia6.tar.gz
+ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pythia 6 sources from ROOT website (not official Pythia website) because its source code contains required ROOT bindings: [https://root.cern.ch/download/pythia6.tar.gz](https://root.cern.ch/download/pythia6.tar.gz).
 
 Extract to `~/Development/pythia6`. Run `./makepythia6.linuxx8664`.
 
