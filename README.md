@@ -1,21 +1,20 @@
 Development Environment setup on Fedora
 ---------------------------------------
 
+GeantGuide code utilizes rudimentary `Geant3` framework and `cernlib` libries. Modern Linux systems do not offer `cernlib` package. It is rather  challenging to satisfy the build dependencies on a modern operating system. It is easier to compile and run the software on an older Linux version. GeantGuide code is dated Jan 2008. Therefore we will stick to an older [Fedora Linux release](https://en.wikipedia.org/wiki/Fedora_Linux_release_history). Here is a list of OS that were tested:
+
+* Fedora 7 (May 2007) - everything compiles but getting error `locb/locf address exceeds the 32 bit address space` upon running the executable.
+* Fedora 8 (Nov 2007) - testing now...
+* Fedora 9 (May 2008) - ?
+* Fedora 10 (Nov 2008) - samba not working.
+* Fedora 11 (Jun 2009) - netinst checksum fails, update servers do not work.
+
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 
 Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
 
-TODO: try Feadora v 11. Refer to release info here: 
-https://en.wikipedia.org/wiki/Fedora_Linux_release_history
 
-GeantGuide code dated ~ Jan 2008.
-
-* Fedora 7 (May 2007) - everything compiles but getting error `locb/locf address exceeds the 32 bit address space`.
-* Fedora 8 (Nov 2007) - testing now...
-* Fedora 9 (May 2008) - ?
-* Fedora 10 (Nov 2008) - samba not working
-* Fedora 11 (Jun 2009) - netinst checksum fails, update servers do not work.
 
 Compile Pythia 6
 ================
