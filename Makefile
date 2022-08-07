@@ -1,30 +1,50 @@
 # Makefile for compiling GEANT simulation on Linux based systems.
 
-TOP_DIR=/localhome/leverin/geantguide
+SOURCES=guhadr.f guout.f gustep.f ugeom.f uginit.f uhinit.f gukine2.f guphad.f gutrev.f uglast.f cerenkov.f ggscnt.f guplsh.f
+SOURCES_INT = $(SOURCES) gxint.f
+SOURCES_BAT = $(SOURCES) main.f
 
-SOURCES=$(TOP_DIR)/guhadr.f $(TOP_DIR)/guout.f $(TOP_DIR)/gustep.f $(TOP_DIR)/ugeom.f $(TOP_DIR)/uginit.f $(TOP_DIR)/uhinit.f $(TOP_DIR)/gukine2.f $(TOP_DIR)/guphad.f $(TOP_DIR)/gutrev.f $(TOP_DIR)/uglast.f $(TOP_DIR)/cerenkov.f $(TOP_DIR)/ggscnt.f $(TOP_DIR)/guplsh.f
+# Create objects variables
+OBJECTS_INT = $(SOURCES_INT:.f=.o)
+OBJECTS_BAT = $(SOURCES_BAT:.f=.o)
+$(info OBJECTS_INT=$(OBJECTS_INT))
+$(info OBJECTS_BAT=$(OBJECTS_BAT))
 
-LIBDIR=$(CERN_ROOT)/lib
-GRAPH=/usr/lib
+#LIBS=${HOME}/Applications/geant3/lib64/libgeant321.so $(LIBDIR)/libGraf.so $(LIBDIR)/libGraf3D.so \
+#$(LIBDIR)/libGX11.so $(LIBDIR)/libmathlib.a -L/${HOME}/Applications/root-debug/lib 
 
-LIBS=$(LIBDIR)/libgeant321.a $(LIBDIR)/libpawlib.a $(LIBDIR)/libgraflib.a \
-$(LIBDIR)/libgrafX11.a $(LIBDIR)/liblapack3.a $(LIBDIR)/libblas.a \
-$(LIBDIR)/libpacklib.a $(LIBDIR)/libmathlib.a $(GRAPH)/libX11.so.6.2.0 \
- -L/usr/X11R6/lib -lnsl -lcrypt -ldl
+# Turn on this flag to dismiss compilation errors
+FFLAGS=-I${HOME}/Applications/root/include/
+FFLAGS+=-I/usr/include/cernlib/2006/
+FFLAGS+=-I${HOME}/Development/geant3-1-11/geant321
+# FFLAGS+=-I${HOME}/Applications/vmc/include/vmc/ 
+# FFLAGS+=-fallow-argument-mismatch
+$(info FFLAGS=$(FFLAGS))
 
-int: $(SOURCES) $(TOP_DIR)/gxint.f 
+LIBS=$(shell root-config --libs)
+LIBS+=-L/usr/lib64/cernlib/2006/lib
+LIBS+=-L${HOME}/Development/geant3-1-11/lib/tgt_linuxx8664gcc -lgeant321
+# LIBS+=-L/home/petrstepanov/Applications/vmc/lib64 -lVMCLibrary
+# LIBS+= -lnsl
 
-	@if [ -n "${CERN_ROOT}" ]; then \
-	        g77 $(SOURCES) $(TOP_DIR)/gxint.f -o gbcal-int $(LIBS); \
-	else \
-		echo ERROR: CERN_ROOT environment variable is not defined.; \
-	fi;
+$(info LIBS=$(LIBS))
 
-bat: $(SOURCES) $(TOP_DIR)/main.f
+# Compile and link in fortran
+# https://stackoverflow.com/questions/31650093/link-multiple-object-files-in-gfortran
 
-	@if [ -n "${CERN_ROOT}" ]; then \
-		g77 $(SOURCES)  $(TOP_DIR)/main.f -o gbcal-bat $(LIBS); \
-	else \
-		echo ERROR: CERN_ROOT environment variable is not defined.; \
-	fi;
+all: int bat
 
+int: $(OBJECTS_INT)
+	$(info Linking...)
+	gfortran -o gbcal-int $(OBJECTS_INT) $(LIBS) --verbose
+
+bat: $(OBJECTS_BAT)
+	$(info Linking...)
+	gfortran -o gbcal-bat $(OBJECTS_BAT) $(LIBS) --verbose
+
+%.o: %.f
+	$(info Compiling $@)
+	gfortran -c $(FFLAGS) $< -o $@
+
+clean:
+	rm -rf $(OBJECTS_INT) $(OBJECTS_BAT) gbcal-bat gbcal-int
