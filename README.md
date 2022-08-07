@@ -33,7 +33,7 @@ yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-d
 yum -y install compat-gcc-34-g77 xorg-x11-fonts
 ```
 
-Download ROOT v.5.26 (release Dec 2009) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract and run following commands in Terminal:
+Download ROOT v.5.26 (release Dec 2009) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract in `~/Development/root` and run following commands in Terminal:
 
 ```
 ./configure --help
