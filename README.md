@@ -29,12 +29,13 @@ Compile ROOT 5.26 (Dec 2009)
 Install ROOT dependencies:
 
 ```
-sudo yum -y groupinstall "Development Tools" "Development Libraries"
-sudo yum -y install git cmake gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel python-devel openssl-devel
-
-sudo yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw* cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel openldap-devel python-devel numpy libxml2-devel gsl-devel uuid* readline-devel R-devel
+su
+yum -y groupinstall "Development Tools" "Development Libraries"
+yum -y install git cmake gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel python-devel openssl-devel
+yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw* cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel openldap-devel python-devel numpy libxml2-devel gsl-devel uuid* readline-devel R-devel
 ```
-Download ROOT v.5.20 (Jun 2008) sources from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/].
+
+Download ROOT v.5.26 (Dec 2009) sources from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/].
 ./configure --help
 ./configure --enable-pythia6 --with-pythia6-libdir=$HOME/Development/pythia6 --disable-gsl-shared
 make
