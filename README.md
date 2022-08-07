@@ -20,8 +20,8 @@ ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pyt
 Extract to `~/Development/pythia6`. Run `./makepythia6.linuxx8664`.
 
 
-Compile ROOT 5.17
-=================
+Compile ROOT 5
+==============
 
 Install ROOT dependencies:
 
@@ -33,17 +33,17 @@ yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-d
 yum -y install compat-gcc-34-g77
 ```
 
-Download ROOT v.5.17 (release June 2007) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract and run following commands in Terminal:
+Download ROOT v.5.26 (release Dec 2009) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract and run following commands in Terminal:
 
 ```
 ./configure --help
-./configure --enable-pythia6 --with-pythia6-libdir=$HOME/Development/pythia6 --disable-gsl-shared
+./configure --enable-pythia6 --with-pythia6-libdir=$HOME/Development/pythia6
 make
 export ROOTSYS=$HOME/Applications/root
 make install
 ```
 
-Add `source $HOME/Development/root/bin/thisroot.sh` to `~/.bashrc`.
+Add `source $HOME/Appliocations/root/bin/thisroot.sh` to `~/.bashrc`.
 
 
 Compile Geant3 v1.11
