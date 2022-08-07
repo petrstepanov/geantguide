@@ -43,13 +43,13 @@ export ROOTSYS=$HOME/Applications/root
 make install
 ```
 
-Add `source $HOME/Appliocations/root/bin/thisroot.sh` to `~/.bashrc`.
+Add `source $HOME/Applications/root/bin/thisroot.sh` to `~/.bashrc`.
 
 
-Compile Geant3 v1.11
-====================
+Compile Geant3
+==============
 
-Download corresponding version from: https://github.com/vmc-project/geant3/tags
+Download Geant3 version from: https://github.com/vmc-project/geant3/tags
 Just "make"
 
 Compile geantguide
