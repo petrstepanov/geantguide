@@ -15,7 +15,6 @@ https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 During the setup mark "Software Development" and "Additional Software Reporitories" to be installed. Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
 
 
-
 Compile Pythia 6
 ================
 
@@ -23,8 +22,9 @@ ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pyt
 
 Extract to `~/Development/pythia6`. Run `./makepythia6.linuxx8664`.
 
-Compile ROOT 5.26 (Dec 2009)
-============================
+
+Compile ROOT 5.17
+=================
 
 Install ROOT dependencies:
 
@@ -35,14 +35,18 @@ yum -y install git cmake gcc binutils libX11-devel libXpm-devel libXft-devel lib
 yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw* cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel openldap-devel python-devel numpy libxml2-devel gsl-devel uuid* readline-devel R-devel
 ```
 
-Download ROOT v.5.26 (Dec 2009) sources from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/].
+Download ROOT v.5.17 (release June 2007) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract and run following commands in Terminal:
+
+```
 ./configure --help
 ./configure --enable-pythia6 --with-pythia6-libdir=$HOME/Development/pythia6 --disable-gsl-shared
 make
 export ROOTSYS=$HOME/Applications/root
 make install
+```
 
 add "source $HOME/Applications/root/bin/thisroot.sh" to ~/.bashrc
+
 
 Compile Geant3 v1.11
 ====================
