@@ -63,10 +63,9 @@ yum -y install cernlib-devel
 exit
 ```
 
-Check out the geantguide repository and build executables:
+There is no easy way to check out this repository in Fedora 8 since its Git version does not support SSL. Therefore, find a way to download the archive and move it to the Fedora 8 computer
 
 ```
-git clone https://github.com/petrstepanov/geantguide
 cd geantguide
 ```
 
