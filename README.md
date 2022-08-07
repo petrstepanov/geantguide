@@ -4,7 +4,7 @@ Development Environment setup on Fedora
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 
-Disable Firewall and SELinux during the setup to avoid potential issues.
+Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
 
 TODO: try Feadora v 11. Refer to release info here: 
 https://en.wikipedia.org/wiki/Fedora_Linux_release_history
