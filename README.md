@@ -43,7 +43,7 @@ export ROOTSYS=$HOME/Applications/root
 make install
 ```
 
-add "source $HOME/Applications/root/bin/thisroot.sh" to ~/.bashrc
+Add `source $HOME/Development/root/bin/thisroot.sh` to `~/.bashrc`.
 
 
 Compile Geant3 v1.11
