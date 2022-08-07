@@ -12,7 +12,7 @@ GeantGuide code utilizes rudimentary `Geant3` framework and `cernlib` libries. M
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 
-Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
+During the setup mark "Software Development" and "Additional Software Reporitories" to be installed. Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
 
 
 
