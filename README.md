@@ -30,7 +30,7 @@ su
 yum -y groupinstall "Development Tools" "Development Libraries"
 yum -y install git cmake gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel python-devel openssl-devel
 yum -y install redhat-lsb gcc-gfortran pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw* cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel openldap-devel python-devel numpy libxml2-devel gsl-devel uuid* readline-devel R-devel
-yum -y install compat-gcc-34-g77
+yum -y install compat-gcc-34-g77 xorg-x11-fonts
 ```
 
 Download ROOT v.5.26 (release Dec 2009) from official website (https://root.cern/install/all_releases/)[https://root.cern/install/all_releases/]. Extract and run following commands in Terminal:
