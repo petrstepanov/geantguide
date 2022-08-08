@@ -16,9 +16,12 @@ During the setup mark "Software Development" and "Additional Software Reporitori
 Compile Pythia 6
 ================
 
-ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pythia 6 sources from [CERN web repository](https://root.cern.ch/download/) (not official Pythia website). Pythia 6 source code hosted at CERN contains required ROOT bindings. Download link: [https://root.cern.ch/download/pythia6.tar.gz](https://root.cern.ch/download/pythia6.tar.gz).
-
-Extract to `~/Development/pythia6`. Run `./makepythia6.linuxx8664`.
+ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pythia 6 sources from [CERN web repository](https://root.cern.ch/download/) (not official Pythia website). Pythia 6 source code hosted at CERN contains required ROOT bindings. Download link: [https://root.cern.ch/download/pythia6.tar.gz](https://root.cern.ch/download/pythia6.tar.gz). Extract to `~/Development/pythia6`. Run:
+```
+cd ~/Development/pythia6
+chmod +x ./makepythia6.linuxx8664
+./makepythia6.linuxx8664`
+```
 
 
 Compile ROOT 5 with Pythia 6
