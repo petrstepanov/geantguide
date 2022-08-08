@@ -149,3 +149,5 @@ Check the package contents on Fedora, install `yum-utils` package and run: `repo
 Check if library is 32 or 64 bit: `file <library-path>`.
 
 List symbols in a library: `nm -D <library-path>`.
+
+List shared libraries in a binary: `ldd <binary>`.
