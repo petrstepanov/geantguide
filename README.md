@@ -5,7 +5,7 @@ GeantGuide code utilizes rudimentary `Geant3` framework and `CERNLIB` libries. M
 
 * Fedora 7 x84_64 (May 2007) - everything compiles but getting error `locb/locf address exceeds the 32 bit address space` upon running the executable.
 * Fedora 8 x86_64 (Nov 2007) - same problem, seems that there a [problem running Geant3 applications with CERNLIB on 64 bit](https://mailman.jlab.org/pipermail/halld-offline/2012-December/001214.html). What tried: build static cernlib libs, link cernlib and lapack statically not dynamicaly, using -O0 flags, -fno-automatic, [link with libpacklib_noshift](https://root-forum.cern.ch/t/h2root-with-amd-x2/4104/3).
-* Fedora 8 i386 (Nov 2007) - testing now.
+* Fedora 8 i386 (Nov 2007) - working.
 
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
