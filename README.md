@@ -59,7 +59,7 @@ Install the geantguide dependences:
 
 ```
 su
-yum -y install cernlib-g77-devel
+yum -y install cernlib-devel
 exit
 ```
 
