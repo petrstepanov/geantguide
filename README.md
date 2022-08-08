@@ -63,10 +63,12 @@ yum -y install cernlib-devel
 exit
 ```
 
-There is no easy way to check out this repository in Fedora 8 since its Git version does not support SSL. Therefore, find a way to download the archive and move it to the Fedora 8 computer
+There is no easy way to check out this repository in Fedora 8 since its Git version does not support SSL. Therefore, find a way to copy the source code to your Fedora 8 computer under `~/Development/geantguide`. To build and run the simulation execute:
 
 ```
-cd geantguide
+cd ~/Development/geantguide
+make
+./gbcal-int
 ```
 
 
