@@ -1,7 +1,7 @@
 Development Environment setup on Fedora
 ---------------------------------------
 
-GeantGuide code utilizes rudimentary `Geant3` framework and `cernlib` libries. Modern Linux systems do not offer `cernlib` package. It is rather  challenging to satisfy the build dependencies on a modern operating system. It is easier to compile and run the software on an older Linux version. GeantGuide code is dated Jan 2008. Therefore we will stick to an older [Fedora Linux](https://en.wikipedia.org/wiki/Fedora_Linux_release_history) versions released in 2007 and earlier. Here is a list of OS that were tested:
+GeantGuide code utilizes rudimentary `Geant3` framework and `CERNLIB` libries. Modern Linux systems do not offer `cernlib` package. It is rather  challenging to satisfy the build dependencies on a modern operating system. It is easier to compile and run the software on an older Linux version. GeantGuide code is dated Jan 2008. Therefore we will stick to an older [Fedora Linux](https://en.wikipedia.org/wiki/Fedora_Linux_release_history) versions released in 2007 and earlier. Here is a list of OS that were tested:
 
 * Fedora 7 (May 2007) - everything compiles but getting error `locb/locf address exceeds the 32 bit address space` upon running the executable.
 * Fedora 8 (Nov 2007) - testing now...
