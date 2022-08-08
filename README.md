@@ -144,4 +144,8 @@ cd geantguide
 Few Tips
 ==================
 
-To check the package contents on Fedora, install `yum-utils` package and run `repoquery -l <package-name>` command.
+Check the package contents on Fedora, install `yum-utils` package and run: `repoquery -l <package-name>`.
+
+Check if library is 32 or 64 bit: `file <library-path>`.
+
+List symbols in a library: `nm -D <library-path>`.
