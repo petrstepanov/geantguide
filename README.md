@@ -49,9 +49,8 @@ Download ROOT v.5.26 (release Dec 2009)  from official website [https://root.cer
 make
 export ROOTSYS=$HOME/Development/root-install
 make install
+echo "source $HOME/Development/root-install/bin/thisroot.sh" >> ~/.bashrc
 ```
-
-Add `source $HOME/Development/root-install/bin/thisroot.sh` to `~/.bashrc`.
 
 Compile geantguide
 ==================
