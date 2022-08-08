@@ -34,7 +34,7 @@ yum -y install compat-gcc-34-g77 xorg-x11-fonts
 exit
 ```
 
-Download ROOT v.5.16 (release Jun 2007) from official website [https://root.cern/install/all_releases/](https://root.cern/install/all_releases/). Extract in `~/Development/root` and run following commands in Terminal:
+Download ROOT v.5.17.08 (release Dec 2007) from official website [https://root.cern/install/all_releases](https://root.cern/install/all_releases/). Extract in `~/Development/root` and run following commands in Terminal:
 
 ```
 ./configure --help
