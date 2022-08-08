@@ -115,7 +115,7 @@ cd $CERN_ROOT/build
 gmake | tee log/make.`date +%m%d` 2>&1
 ```
 
-Above script is based on the instructions provided by the [Matt Bellis here](https://halldweb.jlab.org/wiki/index.php/CERNLIB_Installation). Next, build CERNLIB with following commands:
+Above script is based on the official CERNLIB build notes [posted here](https://cernlib.web.cern.ch/cernlib/install/install.html) and [Matt Bellis post here](https://halldweb.jlab.org/wiki/index.php/CERNLIB_Installation). Next, build CERNLIB with following commands:
 
 ```
 cd ~/Development/CERNLIB
