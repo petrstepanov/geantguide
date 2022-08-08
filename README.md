@@ -40,11 +40,11 @@ Download ROOT v.5.16 (release Jun 2007) from official website [https://root.cern
 ./configure --help
 ./configure --enable-pythia6 --with-pythia6-libdir=$HOME/Development/pythia6
 make
-export ROOTSYS=$HOME/Applications/root
+export ROOTSYS=$HOME/Development/root-install
 make install
 ```
 
-Add `source $HOME/Applications/root/bin/thisroot.sh` to `~/.bashrc`.
+Add `source $HOME/Development/root-install/bin/thisroot.sh` to `~/.bashrc`.
 
 
 Compile Geant3
