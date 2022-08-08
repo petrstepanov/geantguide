@@ -71,13 +71,13 @@ cd geantguide
 ```
 
 
-Compile Geant3
-==============
+Compile Geant3 • Optional
+=========================
 
 Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2007 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` inside this folder in Terminal.
 
-Compile 64 bit CERNLIB
-======================
+Compile CERNLIB • Optional
+==========================
 
 CERNLIB shared libraries in Fedora 8 repositories seem to have an issue. When running the geantguide program, following error output is provided:
 ```
@@ -153,9 +153,10 @@ chmod +x ./install-cernlib.sh
 ./install-cernlib.sh
 ```
 
+TODO: figure out how to compile CERNLIB shared libraries. Must be come configure flag?
 
 Few Tips
-==================
+========
 
 Check the package contents on Fedora, install `yum-utils` package and run: `repoquery -l <package-name>`.
 
