@@ -55,7 +55,74 @@ Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https
 Compile CERNLIB
 ===============
 
-CERNLIB shared libraries in Fedora 8 repositories are compiled for 32 bit architecture. Therefore, we need to compile them from source to get 64-bit version. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` and `mathlib32_src.tar.gz`.
+CERNLIB shared libraries in Fedora 8 repositories are compiled for 32 bit architecture. Therefore, we need to compile them from source to get 64-bit version. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` and `mathlib32_src.tar.gz`. Place above files under `~/Devlopment/CERNLIB` folder.
+
+Next, we will create build and install script for the CERNLIB framework. Create a `~/Devlopment/CERNLIB/install-cernlib.sh` file with following content:
+
+```
+#!/bin/sh
+
+# Unpack the source files and set up the build structure, e.g.
+#  /tmp/cernlib/2003/src (and lib)
+
+list=`ls | grep tar.gz`
+
+for ffile in $list
+do
+  gunzip -c $ffile | tar xf -
+done
+
+# Establish the environment variables for the build procedures
+# Depending on the system, other directories may need to be added to the PATH
+# e.g. for the build tools and alternative compilers.
+
+CERN_LEVEL=2006
+
+CERN=`pwd`
+CERN_ROOT=$CERN/$CERN_LEVEL
+CVSCOSRC=$CERN/$CERN_LEVEL/src
+PATH=$CERN_ROOT/bin:$PATH
+
+export CERN
+export CERN_LEVEL
+export CERN_ROOT 
+export CVSCOSRC
+export PATH
+
+# Create the build directory structure
+
+cd $CERN_ROOT
+mkdir -p build bin lib build/log
+
+# Patch iconwidget.c
+sed -i "s;void   _XmDrawShadow ();// void   _XmDrawShadow ();" ./src/packlib/kuip/code_motif/iconwidget.c
+
+# Create the top level Makefile with imake
+
+cd $CERN_ROOT/build
+$CVSCOSRC/config/imake_boot
+
+# Install kuipc and the scripts (cernlib, paw and gxint) in $CERN_ROOT/bin
+
+gmake bin/kuipc | tee log/kuipc 2>&1
+gmake scripts/Makefile
+cd scripts
+gmake install.bin | tee ../log/scripts 2>&1
+
+# Install the libraries
+
+cd $CERN_ROOT/build
+gmake | tee log/make.`date +%m%d` 2>&1
+```
+
+Above script is based on the instructions provided by the [Matt Bellis here](https://halldweb.jlab.org/wiki/index.php/CERNLIB_Installation). Next, build CERNLIB with following commands:
+
+```
+cd ~/Development/CERNLIB
+chmod +x ./install-cernlib.sh
+./install-cernlib.sh
+```
+
 
 Compile geantguide
 ==================
