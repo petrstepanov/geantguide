@@ -53,6 +53,23 @@ make install
 
 Add `source $HOME/Development/root-install/bin/thisroot.sh` to `~/.bashrc`.
 
+Compile geantguide
+==================
+
+Install the geantguide dependences:
+
+```
+su
+yum -y install cernlib-g77-devel
+exit
+```
+
+There is no easy way to check out this repository in Fedora 8 since its Git version does not support SSL. Therefore, find a way to download the archive and move it to the Fedora 8 computer
+
+```
+cd geantguide
+```
+
 
 Compile Geant3
 ==============
@@ -65,9 +82,10 @@ Compile 64 bit CERNLIB
 CERNLIB shared libraries in Fedora 8 repositories seem to have an issue. When running the geantguide program, following error output is provided:
 ```
 locb/locf address exceeds the 32 bit address space
+or is not in the data segments
 ```
 
-Therefore, we need to compile them from source to get 64-bit version. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` (and maybe `mathlib32_src.tar.gz`). Place above files under `~/Devlopment/CERNLIB` folder.
+Therefore, we attempt to compile CERNLIB from source. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` (and maybe `mathlib32_src.tar.gz`). Place above files under `~/Devlopment/CERNLIB` folder.
 
 Next, we will create build and install script for the CERNLIB framework. Create a `~/Devlopment/CERNLIB/install-cernlib.sh` file with following content:
 
@@ -135,23 +153,6 @@ chmod +x ./install-cernlib.sh
 ./install-cernlib.sh
 ```
 
-
-Compile geantguide
-==================
-
-Install the geantguide dependences:
-
-```
-su
-yum -y install cernlib-devel
-exit
-```
-
-There is no easy way to check out this repository in Fedora 8 since its Git version does not support SSL. Therefore, find a way to download the archive and move it to the Fedora 8 computer
-
-```
-cd geantguide
-```
 
 Few Tips
 ==================
