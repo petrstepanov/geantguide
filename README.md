@@ -50,7 +50,7 @@ Add `source $HOME/Development/root-install/bin/thisroot.sh` to `~/.bashrc`.
 Compile Geant3
 ==============
 
-Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2009 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` in Terminal.
+Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2007 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` in Terminal.
 
 Compile CERNLIB
 ===============
