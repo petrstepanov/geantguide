@@ -20,8 +20,8 @@ ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pyt
 Extract to `~/Development/pythia6`. Run `./makepythia6.linuxx8664`.
 
 
-Compile ROOT 5
-==============
+Compile ROOT 5 with Pythia 6
+============================
 
 Install ROOT dependencies:
 
@@ -50,12 +50,12 @@ Add `source $HOME/Development/root-install/bin/thisroot.sh` to `~/.bashrc`.
 Compile Geant3
 ==============
 
-Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2007 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` in Terminal.
+Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2007 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` inside this folder in Terminal.
 
-Compile CERNLIB
-===============
+Compile 64 bit CERNLIB
+======================
 
-CERNLIB shared libraries in Fedora 8 repositories are compiled for 32 bit architecture. Therefore, we need to compile them from source to get 64-bit version. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` and `mathlib32_src.tar.gz`. Place above files under `~/Devlopment/CERNLIB` folder.
+CERNLIB shared libraries in Fedora 8 repositories are compiled for 32 bit architecture. Therefore, we need to compile them from source to get 64-bit version. Navigate to [CERNLIB website](https://cernlib.web.cern.ch/cernlib/) and download "[compressed tar files](https://cernlib.web.cern.ch/cernlib/download/2006_source/tar/)" from the 2006 sources. We will need three archives: `2006_src.tar.gz`, `include.tar.gz` (and maybe `mathlib32_src.tar.gz`). Place above files under `~/Devlopment/CERNLIB` folder.
 
 Next, we will create build and install script for the CERNLIB framework. Create a `~/Devlopment/CERNLIB/install-cernlib.sh` file with following content:
 
