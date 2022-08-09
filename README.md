@@ -1,20 +1,26 @@
-Development Environment setup on Fedora
----------------------------------------
+Development Environment Setup on Fedora 8
+=========================================
 
-GeantGuide code utilizes rudimentary `Geant3` framework and `CERNLIB` libries. Modern Linux systems do not offer `cernlib` package. It is rather  challenging to satisfy the build dependencies on a modern operating system. It is easier to compile and run the software on an older Linux version. GeantGuide code is dated Jan 2008. Therefore we will stick to an older [Fedora Linux](https://en.wikipedia.org/wiki/Fedora_Linux_release_history) versions released in 2007 and earlier. Here is a list of OS that were tested:
+GeantGuide code utilizes rudimentary `Geant3` framework and `CERNLIB` libries. Despite of the fact that both frameworks are basically abandoned at the moment and are not available in the official system repositories. However, it is still technically possible to compile them on a modern system with recent C++ compiler version. The steps would be following:
+
+* `Geant3` source code can be accessed on this GitHub repository and still seems to be maintained once a while. However, recent Geant3 versions will require to build a VMC framework as a prerequisity. More information [can be found here](https://vmc-project.github.io/installation/).
+* `CERNLIB` framework is completely abandoned as of 2006. But there is [unofficial fork on GitHub](https://github.com/apc-llc/cernlib) that may be built with modern C++ standards. Another set of patch allowing for the same goal [can be found here](https://www-zeuthen.desy.de/linear_collider/cernlib/new/cernlib_2005.html).
+
+Nevertheless, an easier approach would be to compile and run the `geantguide` on older Linux platform. GeantGuide code is dated Jan 2008. Therefore we will stick to an older [Fedora Linux](https://en.wikipedia.org/wiki/Fedora_Linux_release_history) versions released in 2007 and earlier. Here is a list of OS that were tested:
 
 * Fedora 7 x84_64 (May 2007) - everything compiles but getting error `locb/locf address exceeds the 32 bit address space` upon running the executable.
 * Fedora 8 x86_64 (Nov 2007) - same problem, seems that there a [problem running Geant3 applications with CERNLIB on 64 bit](https://mailman.jlab.org/pipermail/halld-offline/2012-December/001214.html). What tried: build static cernlib libs, link cernlib and lapack statically not dynamicaly, using -O0 flags, -fno-automatic, [link with libpacklib_noshift](https://root-forum.cern.ch/t/h2root-with-amd-x2/4104/3).
-* Fedora 8 i386 (Nov 2007) - working.
+* Fedora 8 i386 (Nov 2007) - everything seems to be working.
 
 Download and install Fedora version 8 in a virtual machine from:
 https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/
 
 During the setup mark "Software Development" and "Additional Software Reporitories" to be installed. Disable Firewall and SELinux during the setup to avoid potential issues. After install, run `yum -y upgrade` twice. First it imports the repo and then updated the system.
 
+On Old Fedora Linux (version 8)
+-------------------------------
 
-Compile Pythia 6
-================
+### Compile Pythia 6
 
 ROOT install with Pythia version 6 is required by the Geant3 library. Obtain Pythia 6 sources from [CERN web repository](https://root.cern.ch/download/) (not official Pythia website). Pythia 6 source code hosted at CERN contains required ROOT bindings. Download link: [https://root.cern.ch/download/pythia6.tar.gz](https://root.cern.ch/download/pythia6.tar.gz). Extract to `~/Development/pythia6`. Run:
 ```
@@ -27,8 +33,7 @@ chmod +x ./makepythia6*
 ```
 
 
-Compile ROOT 5 with Pythia 6
-============================
+### Compile ROOT 5 with Pythia 6
 
 Install ROOT dependencies:
 
@@ -52,8 +57,7 @@ make install
 echo "source $HOME/Development/root-install/bin/thisroot.sh" >> ~/.bashrc
 ```
 
-Compile geantguide
-==================
+### Compile geantguide
 
 Install the geantguide dependences:
 
@@ -68,17 +72,27 @@ There is no easy way to check out this repository in Fedora 8 since its Git vers
 ```
 cd ~/Development/geantguide
 make
-./gbcal-int
 ```
 
+Build produces two executable files: `gbcal-int` and `bgcal-bat`. Next steps are to figure out how to run the Geant3 simulation.
 
-Compile Geant3 • Optional
-=========================
+
+### Optional information
+
+Originally I tried to compile the `geantguide` code on x86_64 system. However, after a successful build the program output following error in the Terminal:
+
+```
+locb/locf address exceeds the 32 bit address space
+or is not in the data segments
+```
+
+Problem can be caused by either the Geant3 library or CERNLIB binaries. A reasonable solution was to try to compile above packages from source. The compilation summary is provided below.
+
+#### Compile Geant3
 
 Download Geant3 version from: [https://github.com/vmc-project/geant3/tags](https://github.com/vmc-project/geant3/tags). Geant3 v.1.9 dated Dec 2007 seems to be a reasonable choice with respect to the geantguide source code timestamp. Unpack under `~/Development/geant3-1-9`. Simply run `make` inside this folder in Terminal.
 
-Compile CERNLIB • Optional
-==========================
+### Compile CERNLIB `optional`
 
 CERNLIB shared libraries in Fedora 8 repositories seem to have an issue. When running the geantguide program, following error output is provided:
 ```
