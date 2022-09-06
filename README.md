@@ -74,11 +74,26 @@ cd ~/Development/geantguide
 make
 ```
 
-Build produces two executable files: `gbcal-int` and `bgcal-bat`. Next steps are to figure out how to run the Geant3 simulation.
+Build produces two executable files: `gbcal-int` and `bgcal-bat`.
+
+### Running the Simulation
+
+To obtain the siimulation output, a batch executable file needs to be run from the program folder: 
+```
+./gbcal-bat
+```
+
+Executable outputs file `gntbcal.hbook` containing histograms and plots. To open the file, `paw++` program needs to be installed:
+``
+su
+yum install paw
+``
+
+Run `paw` via typing `paw++` in terminal. Load the `gntbcal.hbook` output file in paw++ user interface via "File" -> "Open Hbook file...".
 
 
 Issues with 64-bit Systems
-------------------------
+--------------------------
 
 Originally I tried to compile the GeantGuide code on x86_64 systems. However, after a successful build the program output following error in the Terminal:
 
