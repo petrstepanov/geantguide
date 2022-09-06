@@ -83,11 +83,12 @@ To obtain the siimulation output, a batch executable file needs to be run from t
 ./gbcal-bat
 ```
 
+### Viewing the results
 Executable outputs file `gntbcal.hbook` containing histograms and plots. To open the file, `paw++` program needs to be installed:
-``
+```
 su
 yum install paw
-``
+```
 
 Run `paw` via typing `paw++` in terminal. Load the `gntbcal.hbook` output file in paw++ user interface via "File" -> "Open Hbook file...".
 
